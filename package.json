@@ -1,0 +1,13 @@
+{
+  "name": "ceramic-playground",
+  "version": "1.0.0",
+  "description": "play with ceramic network and Self.ID",
+  "main": "index.js",
+  "repository": "git@github.com:ilovelili/ceramic-playground.git",
+  "author": "ilovelili <route666@live.cn>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@self.id/web": "^0.3.0"
+  }
+}
