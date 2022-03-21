@@ -1,4 +1,5 @@
 import CeramicClient from "@ceramicnetwork/http-client";
+import KeyDidResolver from "key-did-resolver";
 import ThreeIdResolver from "@ceramicnetwork/3id-did-resolver";
 import type { ResolverRegistry } from "did-resolver";
 import { EthereumAuthProvider, ThreeIdConnect } from "@3id/connect";
@@ -31,6 +32,8 @@ async function client({
   // step 2. get resolvers
   if (!resolvers) {
     resolvers = {
+      // it's very cool that we can add more resolvers here
+      ...KeyDidResolver.getResolver(),
       ...ThreeIdResolver.getResolver(ceramic),
     };
   } else {
