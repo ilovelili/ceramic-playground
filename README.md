@@ -40,4 +40,11 @@ ceramic config set ceramicHost 'https://yourceramicnode.com'
 
 The fastest way to deploy a Ceramic node on cloud (AWS ECS Farget) is to use this [Terraform module](https://github.com/ceramicnetwork/terraform-aws-ceramic)
 
+reminder:
 start from: https://developers.ceramic.network/build/cli/quick-start/
+
+## Ceramic JS Http Client
+
+```bash
+npm install @ceramicnetwork/http-client
+```

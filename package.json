@@ -7,7 +7,32 @@
   "author": "ilovelili <route666@live.cn>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
-    "@self.id/web": "^0.3.0"
+    "@3id/connect": "^0.2.5",
+    "@ceramicnetwork/3id-did-resolver": "^1.4.16",
+    "@ceramicnetwork/http-client": "^1.5.7",
+    "@ceramicstudio/idx": "^0.12.2",
+    "@self.id/web": "^0.3.0",
+    "did-resolver": "^3.1.5",
+    "dids": "^2.4.3",
+    "key-did-resolver": "^1.4.4",
+    "next": "^12.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.41",
+    "autoprefixer": "^10.2.6",
+    "eslint": "^8.11.0",
+    "eslint-config-next": "^12.1.0",
+    "postcss": "^8.3.0",
+    "tailwindcss": "^2.1.4",
+    "typescript": "^4.6.2"
   }
 }
