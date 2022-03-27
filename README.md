@@ -108,3 +108,7 @@ npm install @ceramicnetwork/http-client
 [DID Data Store](https://developers.ceramic.network/tools/glaze/did-datastore/) is a runtime library that allows any application to store and retrieve data from a Ceramic account's personal datastore, with support for public and private data. The DID DataStore is an implementation of the [Identity Index (IDX) protocol](https://github.com/ceramicnetwork/CIP/blob/main/CIPs/CIP-11/CIP-11.md), allowing to associate records to a DID.
 
 ![IDX](https://developers.ceramic.network/images/idx-architecture.png)
+
+#### TODO:
+
+how to check data stored on ipfs???
