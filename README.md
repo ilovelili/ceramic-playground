@@ -109,6 +109,6 @@ npm install @ceramicnetwork/http-client
 
 ![IDX](https://developers.ceramic.network/images/idx-architecture.png)
 
-#### TODO:
+## Tile Document Operation
 
-how to check data stored on ipfs???
+https://developers.ceramic.network/reference/stream-programs/tile-document/

@@ -6,6 +6,9 @@ import KeyDidResolver from 'key-did-resolver'
 import ThreeIdResolver from '@ceramicnetwork/3id-did-resolver'
 import { ResolverRegistry } from 'did-resolver'
 import { createDataStore } from './datastore'
+import IpfsHttpClient from 'ipfs-http-client'
+import { TileDocument } from '@ceramicnetwork/stream-tile'
+import { StreamID } from '@ceramicnetwork/streamid'
 
 declare global {
   interface Window {
@@ -14,6 +17,7 @@ declare global {
 }
 
 const ceramicPromise = createCeramic()
+const ipfs = IpfsHttpClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
 
 const authenticate = async (): Promise<String> => {
   const [ceramic, provider] = await Promise.all([ceramicPromise, getProvider()])
@@ -46,7 +50,6 @@ const authenticate = async (): Promise<String> => {
 
 const updateAlert = (status: string, message: string) => {
   const alert = document.getElementById('alerts')
-
   if (alert !== null) {
     alert.textContent = message
     alert.classList.add(`alert-${status}`)
@@ -57,27 +60,24 @@ const updateAlert = (status: string, message: string) => {
   }
 }
 
-document.getElementById('activate_ceramic')?.addEventListener('click', () => {
-  const ceramicIframe = document.getElementById('ceramic_docs')
-  if (ceramicIframe?.classList.contains('show')) {
-    ceramicIframe?.classList.remove('show')
-    document.getElementById('activate_ceramic')?.classList.remove('active')
-  } else {
-    document.getElementById('activate_ceramic')?.classList.add('active')
-    ceramicIframe?.classList.add('show')
-  }
-})
+// https://developers.ceramic.network/reference/stream-programs/tile-document/
+const createDocument = async (content: any): Promise<StreamID> => {
+  // The following call will fail if the Ceramic instance does not have an authenticated DID
+  const doc = await TileDocument.create(window.ceramic, content)
+  // The stream ID of the created document can then be accessed as the `id` property
+  return doc.id
+}
 
-document.getElementById('activate_idx')?.addEventListener('click', () => {
-  const idxIframe = document.getElementById('idx_docs')
-  if (idxIframe?.classList.contains('show')) {
-    idxIframe?.classList.remove('show')
-    document.getElementById('activate_idx')?.classList.remove('active')
-  } else {
-    document.getElementById('activate_idx')?.classList.add('active')
-    idxIframe?.classList.add('show')
-  }
-})
+const updateDocument = async (id: string, content: any): Promise<void> => {
+  // First, we need to load the document
+  const doc = await TileDocument.load(window.ceramic, id)
+  // The following call will fail if the Ceramic instance does not have an authenticated DID
+  await doc.update(content)
+}
+
+const loadDocument = async (id: string): Promise<TileDocument> => {
+  return await TileDocument.load(window.ceramic, id)
+}
 
 document.getElementById('bauth')?.addEventListener('click', () => {
   document.getElementById('loader')?.classList.remove('hide')
@@ -94,6 +94,8 @@ document.getElementById('bauth')?.addEventListener('click', () => {
       updateAlert('success', `Successfully connected with ${id}`)
       document.getElementById('loader')?.classList.add('hide')
       document.getElementById('bauth')?.classList.add('hide')
+
+      document.getElementById('fileUploader')?.classList.remove('hide')
       document.getElementById('instructions')?.classList.remove('hide')
     },
     (err) => {

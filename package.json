@@ -25,6 +25,7 @@
     "dids": "^2.4.0",
     "esbuild-loader": "^2.16.0",
     "fortmatic": "^2.2.1",
+    "ipfs-http-client": "^44.1.0",
     "key-did-resolver": "^1.4.0",
     "multiformats": "^9.4.10",
     "skynet-js": "^4.0.18-beta",

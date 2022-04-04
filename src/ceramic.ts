@@ -5,7 +5,7 @@ import { TileDocument } from '@ceramicnetwork/stream-tile'
 
 declare global {
   interface Window {
-    ceramic?: CeramicApi
+    ceramic: CeramicApi
     TileDocument: any
     Caip10Link?: any
   }

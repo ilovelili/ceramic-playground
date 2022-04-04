@@ -146,16 +146,10 @@
     <main class="container center">
       <div class="row">
         <div class="col-xs-12 space-around">
-          <div class="btn btn-default ceramic-btn" id="activate_ceramic">Ceramic Docs</div>
-          <div class="btn btn-default idx-btn" id="activate_idx">IDX Docs</div>
-        </div>
-        <div class="col-xs-12 col-lg-6">
-          <iframe class="documentation" src="https://developers.ceramic.network/build/javascript/quick-start/"
-            id="ceramic_docs">
-          </iframe>
-        </div>
-        <div class="col-xs-12 col-lg-6 text-right">
-          <iframe class="documentation" src="https://developers.idx.xyz/build/quick-start/" id="idx_docs"></iframe>
+          <a class="btn btn-default ceramic-btn"
+            href="https://developers.ceramic.network/build/javascript/quick-start/" target="_blank">Ceramic Docs</a>
+          <a class="btn btn-default idx-btn" href="https://developers.idx.xyz/build/quick-start/" target="_blank">IDX
+            Docs</a>
         </div>
       </div>
       <div id="techologies">
@@ -164,14 +158,12 @@
           <li>
             <a href="https://developers.ceramic.network/reference/javascript/clients/#http-client"
               target="_blank">Ceramic HTTP Client</a>: Provides access to the Ceramic Network via a remote node running
-            Ceramic (and
-            IPFS).
+            Ceramic (and IPFS).
           </li>
           <li>
             <a href="https://developers.ceramic.network/build/authentication/#did-provider-or-wallet"
               target="_blank">3ID Connect</a>: Provides authentication to a DID (used by Ceramic) from a blockchain
-            wallet, and
-            stores a link from this blockchain account to your DID in IDX.
+            wallet, and stores a link from this blockchain account to your DID in IDX.
           </li>
           <li>
             <a href="https://idx.xyz" target="_blank">IDX</a>: Provides a way to create identity
@@ -200,6 +192,14 @@
           </li>
         </ol>
       </div>
+
+      <div id="fileUploader" class="hide" style="margin-top: 50px;">
+        <form id="fileUploadForm">
+          <input type="file" id="fileUploadInput" />
+          <input type="submit" style="float: right;"/>
+        </form>
+      </div>
+
     </main>
     <button id="bauth" type="button" class="btn btn-primary center" style="display: inherit; margin: 20px auto">
       <div id="loader" class="loader hide"></div>
