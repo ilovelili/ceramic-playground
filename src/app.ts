@@ -16,6 +16,7 @@ declare global {
   }
 }
 
+let fileBuffer: any
 const ceramicPromise = createCeramic()
 const ipfs = IpfsHttpClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
 
@@ -104,4 +105,38 @@ document.getElementById('bauth')?.addEventListener('click', () => {
       document.getElementById('loader')?.classList.add('hide')
     }
   )
+})
+
+document.getElementById('fileUploadInput')?.addEventListener('change', (event: any) => {
+  event.preventDefault()
+  const file = event.target.files[0]
+  // convert file to buffer
+  const reader = new window.FileReader()
+  reader.readAsArrayBuffer(file)
+
+  reader.onload = function () {
+    fileBuffer = this.result
+    console.log(fileBuffer)
+  }
+})
+
+document.getElementById('fileUploadForm')?.addEventListener('submit', async (event: any) => {
+  event.preventDefault()
+
+  if (!fileBuffer) {
+    alert('please select file to upload')
+    return
+  }
+
+  for await (const result of ipfs.add(fileBuffer)) {
+    let cid = result.path
+    let streamId = await createDocument({ cid })
+    let ceramicDoc = await loadDocument(streamId.toString())
+
+    let resultEl = document.getElementById('result')
+    resultEl!.innerHTML = `
+      <p>Your IPFS CID is ${cid}</p>
+      <p>Your Ceramic Stream ID is ${streamId}</p>
+    `
+  }
 })
