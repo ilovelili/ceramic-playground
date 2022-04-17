@@ -18,6 +18,24 @@ declare global {
 
 let fileBuffer: any
 const ceramicPromise = createCeramic()
+
+/**
+ * // // https://docs.infura.io/infura/networks/ipfs/getting-started/authenticate-requests
+  // const basicAuth = Buffer.from(
+  //   `${ipfs_project_id}:${ipfs_project_secret}`
+  // ).toString("base64");
+
+  // const ipfs = create({
+  //   host: ipfs_host,
+  //   port: ipfs_port,
+  //   protocol: "https",
+  //   headers: {
+  //     authorization: `Basic ${basicAuth}`,
+  //   },
+  // });
+ * 
+ */
+
 const ipfs = IpfsHttpClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
 
 const authenticate = async (): Promise<String> => {
